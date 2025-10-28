@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INPUT DATA PENJUALAN</title>
+    <style>
+        body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(120deg, #e0f7fa, #f0f4ff);
+  color: #333;
+  padding: 20px;
+}
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      background-color: #fff;
+      background: linear-gradient(145deg, #ffffff, #e3f2fd);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      position: relative; /* supaya icon bisa absolute di dalam */
+    }
+    h1 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    .increase-btn, .decrease-btn {
+    transition: all 0.3s ease;
+}
+.increase-btn:hover {
+    background: #66bb6a;
+    box-shadow: 0 0 12px #66bb6a;
+}
+.decrease-btn:hover {
+    background: #ef5350;
+    box-shadow: 0 0 12px #ef5350;
+}
+tr {
+  background: linear-gradient(90deg, #ffffff, #e0f7fa);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  display: block;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+th, td {
+  border: none;
+  padding: 12px;
+}
+tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.profit-container {
+  background: linear-gradient(135deg, #e0f7fa, #bbdefb);
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.seller-profit, .chair-profit {
+  color: #0d47a1;
+}
+.loading-text {
+  font-style: italic;
+  color: #007bff;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+    /* Icon Drive pojok kanan atas */
+    .drive-link {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    a, button, input, select, textarea {
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+    .drive-link:hover {
+      transform: scale(1.2);
+    }
+    .drive-link img {
+      width: 100%;
+      height: auto;
+    }
+    /* Hide tombol + dan - */
+.increase-btn,
+.decrease-btn {
+    display: none !important;
+}
+
+/* Hide tombol balik */
+#backLink {
+    display: none !important;
+}
+
+/* Hide tombol tambah data */
+.drive-link {
+    display: none !important;
+}
+
+    .back-link {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            background: rgba(0,0,0,0.05);
+            transition: transform 0.15s ease, background 0.15s ease;
+            color: #007bff;
+            font-size: 16px;
+        }
+        .back-link:hover {
+            transform: scale(1.08);
+            background: rgba(0,123,255,0.06);
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 15px;
+        }
+        .date-picker, .filter-group, .form-status-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        input[type="date"], select, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        #setTanggalBtn, #toggleFormBtn.on {
+            background-color: #28a745;
+            color: white;
+        }
+        #setTanggalBtn:hover, #toggleFormBtn.on:hover {
+            background-color: #218838;
+        }
+        #toggleFormBtn.off {
+            background-color: #dc3545;
+            color: white;
+        }
+        #toggleFormBtn.off:hover {
+            background-color: #c82333;
+        }
+        #currentTanggal {
+            font-weight: 600;
+            color: #dc3545;
+        }
+        .loading-text {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .delete-row-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+        .delete-row-btn:hover {
+            background-color: #c82333;
+        }
+        .total-box {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        /* --- Sold Item Mobile Styling --- */
+.sold-item {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #f0f4ff, #dbe4ff);
+    padding: 10px 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.sold-item label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #0d47a1;
+    flex: 2;
+}
+
+.sold-item .controls {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.sold-item .controls button {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.sold-item .controls input.jumlah-terjual {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+    background: #e3f2fd;
+    padding: 6px 0;
+    font-size: 16px;
+    color: #0d47a1;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    border: none;
+}
+
+/* Media Query khusus HP */
+@media (max-width: 480px) {
+    .sold-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    .sold-item .controls {
+        justify-content: space-between;
+    }
+    .sold-item .controls input.jumlah-terjual {
+        width: 100%;
+        margin: 0 5px;
+    }
+}
+
+        #totalOverall {
+    display: none !important;
+}
+
+
+        /* === SEMBUNYIKAN TABEL DATA === */
+#dataTable {
+    display: none !important;
+}
+
+        /* === SEMBUNYIKAN PILIH DAN LIHAT TANGGAL === */
+.date-picker,
+.filter-group {
+    display: none !important;
+}
+
+
+        /* Sembunyikan tombol hapus data dan status formulir */
+#deleteSelectedBtn,
+.form-status-control {
+    display: none !important;
+}
+
+        #exportBtn {
+  display: none !important;
+}
+
+
+        /* Gaya untuk checkbox dan aksi massal */
+        .action-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .export-btn {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .export-btn:hover {
+            background-color: #138496;
+        }
+        .delete-selected-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        .delete-selected-btn:hover {
+            background-color: #c82333;
+        }
+        .photo-icon {
+            color: #ffc107;
+            margin-left: 5px;
+        }
+        
+        /* Gaya untuk formulir input barang terjual */
+        .sold-items-form {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+        }
+        .sold-items-form h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .sold-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .sold-item label {
+            font-weight: bold;
+            flex: 1;
+        }
+        .sold-item input {
+            width: 100px;
+        }
+        .total-keuntungan-box {
+            margin-top: 20px;
+            font-size: 1.5em;
+            text-align: right;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .input-error {
+            border: 2px solid red !important;
+        }
+        .profit-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            text-align: right;
+            font-weight: bold;
+        }
+        .seller-profit {
+            color: #555;
+            font-size: 1em;
+        }
+        .chair-profit {
+            color: #28a745;
+            font-size: 1.5em;
+        }
+        .individual-profit-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        .individual-profit-list li {
+            background-color: #f9f9f9;
+            border-left: 3px solid #007bff;
+            padding: 10px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .controls {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            .date-picker, .filter-group, .form-status-control {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            input[type="date"], select, button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr {
+                border: 1px solid #ccc;
+                margin-bottom: 15px;
+                border-radius: 8px;
+            }
+            td {
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+                font-size: 1em;
+            }
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+                text-align: left;
+            }
+            .total-box {
+                text-align: left;
+            }
+        }
+        .drive-link {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  font-size: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.drive-link:hover {
+  transform: scale(1.15);
+  background-color: #0056b3;
+}
+.back-link {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #007bff, #0056b3);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+  transition: all 0.3s ease;
+  animation: pulseGlow 2s infinite;
+}
+
+.back-link:hover {
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow: 0 6px 18px rgba(0, 123, 255, 0.6);
+  background: linear-gradient(145deg, #0069d9, #004ca3);
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(0, 123, 255, 0.8);
+  }
+}
+
+.back-link:active {
+  transform: scale(0.95);
+}
+
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <a href="#" id="backLink" class="back-link" title="Kembali ke Dashboard">
+    <i class="fas fa-arrow-left"></i>
+</a>
+
+    <!-- Icon Google Drive -->
+    <!-- Tombol + di pojok kanan atas -->
+<a href="https://cwudrops.vercel.app"
+   target="_blank"
+   class="drive-link"
+   title="Tambah Data Baru"
+   aria-label="Tambah Data">
+   <i class="fas fa-plus"></i>
+</a>
+
+
+    <h1>DATA REALTIME PENJUALAN CLUB</h1>
+
+        
+        <div class="controls">
+            <div class="date-picker">
+                <label for="tglAcaraInput">Pilih Tanggal Acara:</label>
+                <input type="date" id="tglAcaraInput">
+                <button id="setTanggalBtn">Atur Tanggal</button>
+            </div>
+            <div class="filter-group">
+                <label for="filterTanggal">Lihat Data Tanggal:</label>
+                <select id="filterTanggal"></select>
+            </div>
+            <div class="form-status-control">
+                <span>Status Formulir: </span>
+                <button id="toggleFormBtn"></button>
+            </div>
+        </div>
+
+        <p>Tanggal Acara Saat Ini (Anggota Mengisi): <strong id="currentTanggal">Memuat...</strong></p>
+        
+        <div id="loading" class="loading-text">Memuat data...</div>
+
+        <div class="action-row">
+            <button id="deleteSelectedBtn" class="delete-selected-btn">Hapus Data Terpilih</button>
+            <button id="exportBtn" class="export-btn">Export Data</button>
+        </div>
+
+        <table id="dataTable" style="display:none;">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="selectAll"></th>
+                    <th>Nama Lengkap</th>
+                    <th>Nama Produk</th>
+                    <th>Jumlah Unit</th>
+                    <th>Harga Satuan</th>
+                    <th>Total per Baris</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+
+        <div id="totalOverall" class="total-box"></div>
+        
+        <div id="soldItemsForm" class="sold-items-form" style="display:none;">
+            <h2>Barang Terjual</h2>
+            <div id="soldItemsList"></div>
+            <div class="profit-container">
+                <ul id="individualSellerProfit" class="individual-profit-list"></ul>
+                <div id="totalSellerProfit" class="seller-profit"></div>
+                <div id="totalChairProfit" class="chair-profit"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script>
+    // === KONFIGURASI FIREBASE ===
+    const firebaseConfig = {
+        apiKey: "AIzaSyDpPEkKbEt6b_v2OWlBfGuaVQpBg2-RWR4",
+        authDomain: "cwu-gen-2.firebaseapp.com",
+        databaseURL: "https://cwu-gen-2-default-rtdb.firebaseio.com",
+        projectId: "cwu-gen-2",
+        storageBucket: "cwu-gen-2.appspot.com",
+        messagingSenderId: "40585612014",
+        appId: "1:40585612014:web:c88141fee369aca68181ff",
+        measurementId: "G-S8D7DFJ1G3"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const dataRef = database.ref('dataAnggota/');
+    const configRef = database.ref('konfigurasi/');
+
+    // Elemen DOM
+    const loadingElement = document.getElementById('loading');
+    const dataTable = document.getElementById('dataTable');
+    const tableBody = dataTable.querySelector('tbody');
+    const tglAcaraInput = document.getElementById('tglAcaraInput');
+    const setTanggalBtn = document.getElementById('setTanggalBtn');
+    const currentTanggalElement = document.getElementById('currentTanggal');
+    const filterTanggalSelect = document.getElementById('filterTanggal');
+    const totalOverallElement = document.getElementById('totalOverall');
+    const selectAllCheckbox = document.getElementById('selectAll');
+    const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+    const exportBtn = document.getElementById('exportBtn');
+    const soldItemsForm = document.getElementById('soldItemsForm');
+    const soldItemsList = document.getElementById('soldItemsList');
+    const individualSellerProfitList = document.getElementById('individualSellerProfit');
+    const totalSellerProfitElement = document.getElementById('totalSellerProfit');
+    const totalChairProfitElement = document.getElementById('totalChairProfit');
+    const toggleFormBtn = document.getElementById('toggleFormBtn');
+
+    // Cache data
+    let allDataCache = {};
+    let soldUnitsByProduct = {};
+    let uniqueProducts = {};
+    let sellerProducts = {};
+
+    // Format tanggal & rupiah
+    const formatDate = (d) => new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    const formatRupiah = (n) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(n);
+
+    // === SIMPAN DATA TERJUAL KE FIREBASE ===
+    function saveSoldItemToDatabase(productName, soldUnits, hargaSatuan) {
+        const selectedDate = filterTanggalSelect.value || 'tanpa_tanggal';
+        const totalHarga = soldUnits * hargaSatuan;
+        const waktuUpdate = new Date().toISOString();
+
+        const soldRef = database.ref(`barangTerjual/${selectedDate}/${productName}`);
+        soldRef.set({
+            namaProduk: productName,
+            jumlahTerjual: soldUnits,
+            hargaSatuan: hargaSatuan,
+            totalHarga: totalHarga,
+            waktuUpdate: waktuUpdate
+        }).then(() => {
+            console.log(`✅ ${productName} tersimpan: ${soldUnits} unit (${formatRupiah(totalHarga)})`);
+        }).catch((error) => {
+            console.error('❌ Gagal simpan:', error);
+        });
+    }
+
+    const backLink = document.getElementById('backLink');
+
+backLink.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  // Buat efek keluar animasi sebelum redirect
+  document.body.style.transition = 'opacity 0.5s ease';
+  document.body.style.opacity = '0';
+
+  setTimeout(() => {
+    window.location.href = 'https://admcwudrops.vercel.app';
+  }, 500);
+});
+
+    // === MUAT DATA TERJUAL DARI FIREBASE ===
+    function loadSoldItemsFromDatabase(sellerData, products) {
+        const selectedDate = filterTanggalSelect.value || 'tanpa_tanggal';
+        const soldRef = database.ref(`barangTerjual/${selectedDate}`);
+
+        soldRef.once('value').then(snapshot => {
+            const soldData = snapshot.val() || {};
+            document.querySelectorAll('.jumlah-terjual').forEach(input => {
+                const productName = input.getAttribute('data-product-name');
+                if (soldData[productName]) {
+                    const jumlah = soldData[productName].jumlahTerjual || 0;
+                    input.value = jumlah;
+                }
+            });
+            calculateProfits(sellerData, products);
+            console.log('✅ Data terjual dimuat dari Firebase');
+        }).catch(error => {
+            console.error('❌ Gagal memuat data terjual:', error);
+        });
+    }
+
+    // === RENDER TABEL DATA ===
+    function renderTable(data, filterDate = '') {
+        tableBody.innerHTML = '';
+        let isDataFound = false;
+        let grandTotal = 0;
+        uniqueProducts = {};
+        sellerProducts = {};
+
+        if (!data || Object.keys(data).length === 0) {
+            loadingElement.textContent = `Belum ada data sama sekali.`;
+            loadingElement.style.display = 'block';
+            dataTable.style.display = 'none';
+            totalOverallElement.style.display = 'none';
+            soldItemsForm.style.display = 'none';
+            return;
+        }
+
+        Object.values(data).forEach(anggota => {
+            if (filterDate === '' || anggota.tanggal === filterDate) {
+                const hasImage = anggota.uploadImageCheck || false;
+                if (anggota.katalogProduk && anggota.katalogProduk.length > 0) {
+                    if (!sellerProducts[anggota.namaLengkap]) {
+                        sellerProducts[anggota.namaLengkap] = {};
+                    }
+
+                    anggota.katalogProduk.forEach((produk, produkIndex) => {
+                        const totalPerBaris = produk.jumlahUnit * produk.hargaSatuan;
+                        grandTotal += totalPerBaris;
+                        const productName = produk.namaProduk.toLowerCase();
+
+                        if (!uniqueProducts[productName]) {
+                            uniqueProducts[productName] = {
+                                namaProduk: produk.namaProduk,
+                                totalUnit: 0,
+                                hargaSatuan: produk.hargaSatuan,
+                            };
+                        }
+                        uniqueProducts[productName].totalUnit += produk.jumlahUnit;
+
+                        if (!sellerProducts[anggota.namaLengkap][productName]) {
+                            sellerProducts[anggota.namaLengkap][productName] = {
+                                namaProduk: produk.namaProduk,
+                                jumlahUnit: 0,
+                                hargaSatuan: produk.hargaSatuan
+                            };
+                        }
+                        sellerProducts[anggota.namaLengkap][productName].jumlahUnit += produk.jumlahUnit;
+
+                        const newRow = document.createElement('tr');
+                        newRow.innerHTML = `
+                            <td><input type="checkbox" data-key="${anggota.key}" data-index="${produkIndex}"></td>
+                            <td data-label="Nama Lengkap">${anggota.namaLengkap} ${hasImage ? '<i class="fas fa-camera photo-icon"></i>' : ''}</td>
+                            <td data-label="Nama Produk">${produk.namaProduk}</td>
+                            <td data-label="Jumlah Unit">${produk.jumlahUnit}</td>
+                            <td data-label="Harga Satuan">${formatRupiah(produk.hargaSatuan)}</td>
+                            <td data-label="Total per Baris"><strong>${formatRupiah(totalPerBaris)}</strong></td>
+                        `;
+                        tableBody.appendChild(newRow);
+                        isDataFound = true;
+                    });
+                }
+            }
+        });
+
+        if (isDataFound) {
+            loadingElement.style.display = 'none';
+            dataTable.style.display = 'table';
+            totalOverallElement.innerHTML = `Total Keseluruhan: <strong>${formatRupiah(grandTotal)}</strong>`;
+            totalOverallElement.style.display = 'block';
+            renderSoldItemsForm(uniqueProducts, sellerProducts);
+            loadSoldItemsFromDatabase(sellerProducts, uniqueProducts); // ⬅️ tambahkan di sini
+        } else {
+            loadingElement.textContent = `Belum ada data untuk tanggal ini.`;
+            loadingElement.style.display = 'block';
+            dataTable.style.display = 'none';
+            totalOverallElement.style.display = 'none';
+            soldItemsForm.style.display = 'none';
+        }
+    }
+    
+
+    // === RENDER FORM PENJUALAN ===
+    function renderSoldItemsForm(products, sellerData) {
+    const productArray = Object.values(products);
+    if (productArray.length > 0) {
+        soldItemsForm.style.display = 'block';
+        soldItemsList.innerHTML = '';
+        productArray.forEach(product => {
+            const productItem = document.createElement('div');
+            productItem.classList.add('sold-item');
+            productItem.style.display = 'flex';
+            productItem.style.justifyContent = 'space-between';
+            productItem.style.alignItems = 'center';
+            productItem.style.background = 'linear-gradient(135deg, #f0f4ff, #dbe4ff)';
+            productItem.style.padding = '12px 20px';
+            productItem.style.borderRadius = '12px';
+            productItem.style.boxShadow = '0 8px 20px rgba(0,0,0,0.08)';
+            productItem.style.marginBottom = '12px';
+            productItem.style.transition = 'transform 0.2s, box-shadow 0.2s';
+
+            productItem.addEventListener('mouseenter', () => {
+                productItem.style.transform = 'translateY(-2px)';
+                productItem.style.boxShadow = '0 12px 25px rgba(0,0,0,0.12)';
+            });
+            productItem.addEventListener('mouseleave', () => {
+                productItem.style.transform = 'translateY(0)';
+                productItem.style.boxShadow = '0 8px 20px rgba(0,0,0,0.08)';
+            });
+
+            productItem.innerHTML = `
+                <label style="font-weight:600; font-size:16px; color:#0d47a1; flex:1;">${product.namaProduk} (${product.totalUnit} unit)</label>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <button type="button" class="decrease-btn" 
+                            data-product-name="${product.namaProduk.toLowerCase()}"
+                            style="
+                                width:40px; height:40px;
+                                border:none; border-radius:50%;
+                                background:#f44336; color:white; font-size:20px;
+                                cursor:pointer; transition:all 0.2s;
+                            ">-</button>
+                    <input type="text"
+                           class="jumlah-terjual"
+                           value="0"
+                           readonly
+                           data-harga-satuan="${product.hargaSatuan}"
+                           data-product-name="${product.namaProduk.toLowerCase()}"
+                           style="
+                                width:70px; text-align:center; font-weight:bold;
+                                border:none; border-radius:10px; background:#e3f2fd;
+                                padding:6px 0; font-size:16px; color:#0d47a1;
+                                box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+                           ">
+                    <button type="button" class="increase-btn"
+                            data-product-name="${product.namaProduk.toLowerCase()}"
+                            style="
+                                width:40px; height:40px;
+                                border:none; border-radius:50%;
+                                background:#4caf50; color:white; font-size:20px;
+                                cursor:pointer; transition:all 0.2s;
+                            ">+</button>
+                </div>
+            `;
+            soldItemsList.appendChild(productItem);
+        });
+
+        // Tombol +
+        soldItemsList.querySelectorAll('.increase-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const productName = btn.getAttribute('data-product-name');
+                const input = soldItemsList.querySelector(`.jumlah-terjual[data-product-name="${productName}"]`);
+                let value = parseInt(input.value) || 0;
+                const max = parseInt(products[productName].totalUnit);
+                if (value < max) {
+                    input.value = value + 1;
+                    calculateProfits(sellerData, products);
+                    saveSoldItemToDatabase(productName, value + 1, parseInt(input.getAttribute('data-harga-satuan')));
+                }
+            });
+        });
+
+        // Tombol -
+        soldItemsList.querySelectorAll('.decrease-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const productName = btn.getAttribute('data-product-name');
+                const input = soldItemsList.querySelector(`.jumlah-terjual[data-product-name="${productName}"]`);
+                let value = parseInt(input.value) || 0;
+                if (value > 0) {
+                    input.value = value - 1;
+                    calculateProfits(sellerData, products);
+                    saveSoldItemToDatabase(productName, value - 1, parseInt(input.getAttribute('data-harga-satuan')));
+                }
+            });
+        });
+
+        calculateProfits(sellerData, products);
+    } else {
+        soldItemsForm.style.display = 'none';
+    }
+}
+
+
+    // === HITUNG KEUNTUNGAN ===
+    // === HITUNG KEUNTUNGAN ===
+function calculateProfits(sellerData, totalProducts) {
+    soldUnitsByProduct = {};
+    let isValid = true;
+    let totalSoldUnits = 0;
+
+    soldItemsList.querySelectorAll('.jumlah-terjual').forEach(input => {
+        const value = parseInt(input.value) || 0;
+        const maxUnits = parseInt(input.getAttribute('max'));
+        const productName = input.getAttribute('data-product-name');
+        if (value > maxUnits) {
+            input.classList.add('input-error');
+            isValid = false;
+        } else {
+            input.classList.remove('input-error');
+            soldUnitsByProduct[productName] = value;
+            totalSoldUnits += value;
+        }
+    });
+
+    if (isValid) {
+        const individualProfits = {};
+        let totalSellerProfit = 0;
+
+        // Hitung total keuntungan tiap penjual
+        for (const seller in sellerData) {
+            let sellerProfit = 0;
+            for (const product in sellerData[seller]) {
+                const productData = sellerData[seller][product];
+                const soldUnits = soldUnitsByProduct[product] || 0;
+                if (soldUnits > 0) {
+                    const totalUnitsInStock = totalProducts[product].totalUnit;
+                    const share = productData.jumlahUnit / totalUnitsInStock;
+                    const sellerShareOfTotalSales = share * soldUnits * productData.hargaSatuan;
+                    sellerProfit += sellerShareOfTotalSales;
+                }
+            }
+            if (sellerProfit > 0) {
+                individualProfits[seller] = sellerProfit;
+                totalSellerProfit += sellerProfit;
+            }
+        }
+
+        // Hitung keuntungan ketua (10%)
+        const chairProfit = totalSellerProfit * 0.10;
+        const netSellerProfit = totalSellerProfit - chairProfit;
+
+        // Tampilkan hasil di UI
+        individualSellerProfitList.innerHTML = '<h4>Keuntungan Kotor Tiap Penjual:</h4>';
+        for (const seller in individualProfits) {
+            const li = document.createElement('li');
+            li.textContent = `${seller}: ${formatRupiah(individualProfits[seller])}`;
+            individualSellerProfitList.appendChild(li);
+        }
+
+        totalSellerProfitElement.innerHTML =
+            `Total Keuntungan Kotor Penjual: <strong>${formatRupiah(totalSellerProfit)}</strong><br>
+             Keuntungan Bersih Penjual (setelah potongan 10%): <strong>${formatRupiah(netSellerProfit)}</strong>`;
+        totalChairProfitElement.innerHTML =
+            `Keuntungan Ketua (10%): <strong>${formatRupiah(chairProfit)}</strong>`;
+    } else {
+        individualSellerProfitList.innerHTML = '';
+        totalSellerProfitElement.textContent = `Terdapat input yang tidak valid!`;
+        totalChairProfitElement.textContent = '';
+    }
+}
+
+
+    // === EVENT ===
+    setTanggalBtn.addEventListener('click', () => {
+        const selectedDate = tglAcaraInput.value;
+        if (selectedDate) {
+            const formatted = formatDate(selectedDate);
+            configRef.update({ tanggalAcara: formatted })
+                .then(() => alert(`Tanggal acara berhasil diatur menjadi ${formatted}`))
+                .catch((e) => alert('Gagal mengatur tanggal: ' + e.message));
+        } else alert('Silakan pilih tanggal terlebih dahulu.');
+    });
+
+    toggleFormBtn.addEventListener('click', () => {
+        configRef.once('value', (snapshot) => {
+            const current = snapshot.val()?.formStatus || false;
+            configRef.update({ formStatus: !current })
+                .then(() => alert(`Formulir berhasil di${!current ? 'nyalakan' : 'matikan'}.`))
+                .catch((e) => alert('Gagal mengubah status: ' + e.message));
+        });
+    });
+
+    selectAllCheckbox.addEventListener('change', (e) => {
+        const checks = tableBody.querySelectorAll('input[type="checkbox"]');
+        checks.forEach(c => c.checked = e.target.checked);
+    });
+
+    deleteSelectedBtn.addEventListener('click', () => {
+        const selected = tableBody.querySelectorAll('input[type="checkbox"]:checked');
+        if (!selected.length) return alert('Pilih setidaknya satu data.');
+        if (!confirm(`Yakin hapus ${selected.length} data?`)) return;
+        const updates = {};
+        selected.forEach(cb => {
+            const key = cb.dataset.key;
+            const index = parseInt(cb.dataset.index);
+            if (allDataCache[key]) {
+                const updated = [...allDataCache[key].katalogProduk];
+                updated.splice(index, 1);
+                if (updated.length > 0) updates[`/dataAnggota/${key}/katalogProduk`] = updated;
+                else updates[`/dataAnggota/${key}`] = null;
+            }
+        });
+        database.ref().update(updates)
+            .then(() => alert('Data berhasil dihapus.'))
+            .catch(err => alert('Gagal hapus: ' + err.message));
+    });
+
+    filterTanggalSelect.addEventListener('change', () => {
+        renderTable(allDataCache, filterTanggalSelect.value);
+    });
+
+    dataRef.on('value', (snap) => {
+        const data = snap.val();
+        allDataCache = data ? Object.fromEntries(Object.entries(data).map(([k, v]) => [k, { ...v, key: k }])) : {};
+        const uniqueDates = new Set();
+        if (data) Object.values(data).forEach(d => d.tanggal && uniqueDates.add(d.tanggal));
+        filterTanggalSelect.innerHTML = '<option value="">Semua Tanggal</option>';
+        Array.from(uniqueDates).sort().forEach(date => {
+            const o = document.createElement('option');
+            o.value = date; o.textContent = date;
+            filterTanggalSelect.appendChild(o);
+        });
+        renderTable(allDataCache, filterTanggalSelect.value);
+    });
+
+    configRef.on('value', (snap) => {
+        const cfg = snap.val();
+        currentTanggalElement.textContent = cfg?.tanggalAcara || "Belum diatur";
+        if (cfg && cfg.formStatus !== undefined) {
+            toggleFormBtn.textContent = cfg.formStatus ? 'Matikan Formulir' : 'Nyalakan Formulir';
+            toggleFormBtn.classList.toggle('on', cfg.formStatus);
+            toggleFormBtn.classList.toggle('off', !cfg.formStatus);
+        }
+    });
+</script>
+
+</body>
+</html>
