@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIEW DATA PENJUALAN</title>
+
+  <!-- FontAwesome dan XLSX -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <!-- Style Eksternal -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Tombol Kembali -->
+    <a href="#" id="backLink" class="back-link" title="Kembali ke Dashboard">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <!-- Tombol Tambah (+) -->
+    <a href="https://cwudrops.vercel.app"
+       target="_blank"
+       class="drive-link"
+       title="Tambah Data Baru"
+       aria-label="Tambah Data">
+       <i class="fas fa-plus"></i>
+    </a>
+
+    <h1>DATA REALTIME PENJUALAN CLUB</h1>
+
+    <div class="controls">
+      <div class="date-picker">
+        <label for="tglAcaraInput">Pilih Tanggal Acara:</label>
+        <input type="date" id="tglAcaraInput">
+        <button id="setTanggalBtn">Atur Tanggal</button>
+      </div>
+      <div class="filter-group">
+        <label for="filterTanggal">Lihat Data Tanggal:</label>
+        <select id="filterTanggal"></select>
+      </div>
+      <div class="form-status-control">
+        <span>Status Formulir: </span>
+        <button id="toggleFormBtn"></button>
+      </div>
+    </div>
+
+    <p>Tanggal Acara Saat Ini (Anggota Mengisi): <strong id="currentTanggal">Memuat...</strong></p>
+    <div id="loading" class="loading-text">Memuat data...</div>
+
+    <div class="action-row">
+      <button id="deleteSelectedBtn" class="delete-selected-btn">Hapus Data Terpilih</button>
+      <button id="exportBtn" class="export-btn">Export Data</button>
+    </div>
+
+    <table id="dataTable" style="display:none;">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAll"></th>
+          <th>Nama Lengkap</th>
+          <th>Nama Produk</th>
+          <th>Jumlah Unit</th>
+          <th>Harga Satuan</th>
+          <th>Total per Baris</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div id="totalOverall" class="total-box"></div>
+
+    <div id="soldItemsForm" class="sold-items-form" style="display:none;">
+      <h2>Barang Terjual</h2>
+      <div id="soldItemsList"></div>
+      <div class="profit-container">
+        <ul id="individualSellerProfit" class="individual-profit-list"></ul>
+        <div id="totalSellerProfit" class="seller-profit"></div>
+        <div id="totalChairProfit" class="chair-profit"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+  <!-- Script Eksternal -->
+  <script src="script.js"></script>
+</body>
+</html>

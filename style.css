@@ -1,0 +1,498 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(120deg, #e0f7fa, #f0f4ff);
+  color: #333;
+  padding: 20px;
+}
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      background-color: #fff;
+      background: linear-gradient(145deg, #ffffff, #e3f2fd);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      position: relative; /* supaya icon bisa absolute di dalam */
+    }
+    h1 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    .increase-btn, .decrease-btn {
+    transition: all 0.3s ease;
+}
+.increase-btn:hover {
+    background: #66bb6a;
+    box-shadow: 0 0 12px #66bb6a;
+}
+.decrease-btn:hover {
+    background: #ef5350;
+    box-shadow: 0 0 12px #ef5350;
+}
+tr {
+  background: linear-gradient(90deg, #ffffff, #e0f7fa);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  display: block;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+th, td {
+  border: none;
+  padding: 12px;
+}
+tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.profit-container {
+  background: linear-gradient(135deg, #e0f7fa, #bbdefb);
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.seller-profit, .chair-profit {
+  color: #0d47a1;
+}
+.loading-text {
+  font-style: italic;
+  color: #007bff;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+    /* Icon Drive pojok kanan atas */
+    .drive-link {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    a, button, input, select, textarea {
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+    .drive-link:hover {
+      transform: scale(1.2);
+    }
+    .drive-link img {
+      width: 100%;
+      height: auto;
+    }
+
+
+
+    .back-link {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            background: rgba(0,0,0,0.05);
+            transition: transform 0.15s ease, background 0.15s ease;
+            color: #007bff;
+            font-size: 16px;
+        }
+        .back-link:hover {
+            transform: scale(1.08);
+            background: rgba(0,123,255,0.06);
+        }
+        #backLink {
+    display: none !important;
+}
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 15px;
+        }
+        .date-picker, .filter-group, .form-status-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        input[type="date"], select, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        #setTanggalBtn, #toggleFormBtn.on {
+            background-color: #28a745;
+            color: white;
+        }
+        #setTanggalBtn:hover, #toggleFormBtn.on:hover {
+            background-color: #218838;
+        }
+        #toggleFormBtn.off {
+            background-color: #dc3545;
+            color: white;
+        }
+        #dataTable {
+    display: none !important;
+}
+        #toggleFormBtn.off:hover {
+            background-color: #c82333;
+        }
+        #currentTanggal {
+            font-weight: 600;
+            color: #dc3545;
+        }
+        .loading-text {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .increase-btn,
+.decrease-btn {
+    display: none !important;
+}
+        th {
+            background-color: #007bff;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .delete-row-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+        .delete-row-btn:hover {
+            background-color: #c82333;
+        }
+        .total-box {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        /* --- Sold Item Mobile Styling --- */
+.sold-item {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #f0f4ff, #dbe4ff);
+    padding: 10px 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.sold-item label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #0d47a1;
+    flex: 2;
+}
+        #totalOverall {
+    display: none !important;
+}
+
+.sold-item .controls {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+.date-picker,
+.filter-group {
+    display: none !important;
+}
+
+.sold-item .controls button {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.sold-item .controls input.jumlah-terjual {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+    background: #e3f2fd;
+    padding: 6px 0;
+    font-size: 16px;
+    color: #0d47a1;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    border: none;
+}
+
+/* Media Query khusus HP */
+@media (max-width: 480px) {
+    .sold-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    .sold-item .controls {
+        justify-content: space-between;
+    }
+    .sold-item .controls input.jumlah-terjual {
+        width: 100%;
+        margin: 0 5px;
+    }
+}
+
+        #exportBtn {
+  display: none !important;
+}
+       
+        .action-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .export-btn {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .export-btn:hover {
+            background-color: #138496;
+        }
+        .delete-selected-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        .delete-selected-btn:hover {
+            background-color: #c82333;
+        }
+        .photo-icon {
+            color: #ffc107;
+            margin-left: 5px;
+        }
+        
+        /* Gaya untuk formulir input barang terjual */
+        .sold-items-form {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+        }
+        .sold-items-form h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .sold-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .sold-item label {
+            font-weight: bold;
+            flex: 1;
+        }
+        .sold-item input {
+            width: 100px;
+        }
+        .total-keuntungan-box {
+            margin-top: 20px;
+            font-size: 1.5em;
+            text-align: right;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .input-error {
+            border: 2px solid red !important;
+        }
+        .drive-link {
+    display: none !important;
+}
+        .profit-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            text-align: right;
+            font-weight: bold;
+        }
+        .seller-profit {
+            color: #555;
+            font-size: 1em;
+        }
+        .chair-profit {
+            color: #28a745;
+            font-size: 1.5em;
+        }
+        .individual-profit-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        .individual-profit-list li {
+            background-color: #f9f9f9;
+            border-left: 3px solid #007bff;
+            padding: 10px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .controls {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            .date-picker, .filter-group, .form-status-control {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            input[type="date"], select, button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr {
+                border: 1px solid #ccc;
+                margin-bottom: 15px;
+                border-radius: 8px;
+            }
+            td {
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+                font-size: 1em;
+            }
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+                text-align: left;
+            }
+            .total-box {
+                text-align: left;
+            }
+        }
+        .drive-link {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  font-size: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.drive-link:hover {
+  transform: scale(1.15);
+  background-color: #0056b3;
+}
+.back-link {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #007bff, #0056b3);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+  transition: all 0.3s ease;
+  animation: pulseGlow 2s infinite;
+}
+
+.back-link:hover {
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow: 0 6px 18px rgba(0, 123, 255, 0.6);
+  background: linear-gradient(145deg, #0069d9, #004ca3);
+}
+#deleteSelectedBtn,
+.form-status-control {
+    display: none !important;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(0, 123, 255, 0.8);
+  }
+}
+
+.back-link:active {
+  transform: scale(0.95);
+}
