@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -92,21 +93,8 @@ tr:hover {
       width: 100%;
       height: auto;
     }
-    /* Hide tombol + dan - */
-.increase-btn,
-.decrease-btn {
-    display: none !important;
-}
 
-/* Hide tombol balik */
-#backLink {
-    display: none !important;
-}
 
-/* Hide tombol tambah data */
-.drive-link {
-    display: none !important;
-}
 
     .back-link {
             position: absolute;
@@ -129,6 +117,9 @@ tr:hover {
             transform: scale(1.08);
             background: rgba(0,123,255,0.06);
         }
+        #backLink {
+    display: none !important;
+}
         .controls {
             display: flex;
             flex-wrap: wrap;
@@ -166,6 +157,9 @@ tr:hover {
             background-color: #dc3545;
             color: white;
         }
+        #dataTable {
+    display: none !important;
+}
         #toggleFormBtn.off:hover {
             background-color: #c82333;
         }
@@ -193,6 +187,10 @@ tr:hover {
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+        .increase-btn,
+.decrease-btn {
+    display: none !important;
+}
         th {
             background-color: #007bff;
             color: white;
@@ -236,6 +234,9 @@ tr:hover {
     color: #0d47a1;
     flex: 2;
 }
+        #totalOverall {
+    display: none !important;
+}
 
 .sold-item .controls {
     display: flex;
@@ -243,6 +244,10 @@ tr:hover {
     align-items: center;
     justify-content: flex-end;
     gap: 8px;
+}
+.date-picker,
+.filter-group {
+    display: none !important;
 }
 
 .sold-item .controls button {
@@ -282,35 +287,10 @@ tr:hover {
     }
 }
 
-        #totalOverall {
-    display: none !important;
-}
-
-
-        /* === SEMBUNYIKAN TABEL DATA === */
-#dataTable {
-    display: none !important;
-}
-
-        /* === SEMBUNYIKAN PILIH DAN LIHAT TANGGAL === */
-.date-picker,
-.filter-group {
-    display: none !important;
-}
-
-
-        /* Sembunyikan tombol hapus data dan status formulir */
-#deleteSelectedBtn,
-.form-status-control {
-    display: none !important;
-}
-
         #exportBtn {
   display: none !important;
 }
-
-
-        /* Gaya untuk checkbox dan aksi massal */
+       
         .action-row {
             display: flex;
             flex-wrap: wrap;
@@ -372,6 +352,9 @@ tr:hover {
         .input-error {
             border: 2px solid red !important;
         }
+        .drive-link {
+    display: none !important;
+}
         .profit-container {
             display: flex;
             flex-direction: column;
@@ -503,6 +486,10 @@ tr:hover {
   transform: scale(1.1) rotate(-3deg);
   box-shadow: 0 6px 18px rgba(0, 123, 255, 0.6);
   background: linear-gradient(145deg, #0069d9, #004ca3);
+}
+#deleteSelectedBtn,
+.form-status-control {
+    display: none !important;
 }
 
 @keyframes pulseGlow {
